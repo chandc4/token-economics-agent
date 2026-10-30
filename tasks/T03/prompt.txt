@@ -1,0 +1,4 @@
+Running `test_cache.py` fails with an `AssertionError: False is not true`.
+The test log misleadingly hints at a TTL timeout issue, but the real underlying cause is in `cache.py`: `get(key)` incorrectly deletes entries when retrieving them.
+Inspect `cache.py`, identify the real defect, fix it so `get(key)` does not destroy valid entries, and ensure `test_cache.py` passes cleanly.
+When done, report using the standard `## Done` format.

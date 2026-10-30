@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+
+# Benchmark runs (generated)
+runs/
+
+# Temp workspaces
+te_run_*/
+
+# OpenCode local state
+.opencode/state/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+npm-pkg/node_modules/
+
+# Logs
+*.log

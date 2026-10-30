@@ -1,0 +1,5 @@
+Refactor `models.py` and `serializer.py` to support an optional `email` field on the `User` class.
+1. In `models.py`: Update `User.__init__` to accept `name`, `age`, and optional `email=None`. Add a method `to_dict()` returning a dictionary of the fields.
+2. In `serializer.py`: Update `serialize_user(user)` to return JSON string containing `name`, `age`, and `email` (null if not provided). Update `deserialize_user(json_str)` to parse `email` and construct the `User` object.
+Ensure `test_user_service.py` passes cleanly.
+When done, report using the standard `## Done` format.

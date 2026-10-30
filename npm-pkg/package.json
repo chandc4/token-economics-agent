@@ -1,0 +1,23 @@
+{
+  "name": "te-agent",
+  "version": "2.2.2",
+  "description": "Zero-dependency Token Economics & Invariant Contract Generator for OpenCode, Antigravity, and AI Coding Agents",
+  "bin": {
+    "te-agent": "./bin/cli.js",
+    "te-init": "./bin/cli.js"
+  },
+  "keywords": [
+    "opencode",
+    "antigravity",
+    "token-economics",
+    "ai-agents",
+    "llm",
+    "context-window",
+    "prompt-engineering"
+  ],
+  "author": "TE-Agent Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

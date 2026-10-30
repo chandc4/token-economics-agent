@@ -1,0 +1,41 @@
+# Token Economics for Coding Agents
+
+**A measurement-first study of what actually reduces agent cost per solved task — on one real repo, with numbers.**
+
+## The question
+
+Agentic coding is expensive, and most of the cost is not the model. It's re-reading context the agent already had, failed tool calls and retry loops, verbose tool output, and full-file rewrites. Practitioners trade advice about prompts and configs, but almost nobody measures which interventions pay off, by how much, or whether the effect survives the noise floor.
+
+This project answers one falsifiable question: **on real tasks in a real repo, which agent-configuration interventions measurably reduce tokens per solved task, retry rate, and tool-call waste — and by how much?**
+
+## The thesis, stated so it can fail
+
+Not "long instruction files waste money" — prompt caching makes resident text cheap. The cost is **attention dilution**, a quality effect. And not "the labs aren't looking at this" — cost-per-task is now a competitive metric. The real gap is structural: **nobody optimizes your repo, and nobody publishes per-component ablations with variance.**
+
+The framework under test — invariants, per-task contract, tool cards with negative examples, executable definition-of-done, evidence tagging, budgets and stop rules — is the *hypothesis*, not the product. The product is the measurement harness and the controlled comparison.
+
+## Method
+
+- **Instrument:** a pass-through API proxy logging exact token counts (cache-hit vs cache-miss split), plus harness-level call events. Harness-agnostic, so it survives plugin API drift.
+- **Corpus:** 15 tasks on a single repo, labelled for the failure modes that matter — single-file, multi-file refactor, misleading symptom, under-specified, should-decline.
+- **Judge:** `done.sh`, hidden from the agent, fresh shell, network off. Success is an exit code, never a self-report.
+- **Design:** paired, seed-matched, interleaved runs. Cluster bootstrap over tasks. A/A test first to establish the noise floor, then sequential elimination: 6 configs screened descriptively, ≤3 finalists confirmed with Holm correction.
+- **Cost unit:** output-token-equivalents, so cached input isn't compared to fresh input at face value — with raw counts always reported alongside.
+
+## Success criteria
+
+1. A reproducible metrics report from a clean checkout, one command.
+2. At least three findings stated with effect sizes, confidence intervals, and variance across seeds.
+3. A config generator that reports its own efficacy — or a documented set of negatives.
+
+**Kill criteria, stated up front:** if by Gate 2 the best config doesn't beat the median by more than the measured noise floor, publish the null result and the harness, and stop.
+
+## What this is not
+
+Not a universal config, not a dashboard, not a startup, and not a claim that a markdown file beats a vendor's context architecture. Findings are within one repo and will be labelled as such; cross-repo generalization is a later phase, and until it runs the generator is untested.
+
+## Why it's worth doing
+
+The honest deliverable is a small, defensible empirical result — *"on repos with noisy test suites, piping tool output is worth more than every prompt intervention combined"* — plus the instrumentation to reproduce it. That's a finding nobody has published, it costs a few hundred dollars to obtain, and it's more useful than another framework. If the numbers don't support the framework, that's a result too, and a more credible one.
+
+**Instruments:** opencode (primary); Antigravity pending a capability probe — its measurement tier determines whether it's a comparison arm or a field-validation note.
