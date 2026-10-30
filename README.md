@@ -2,6 +2,8 @@
 
 **A measurement-first system that replaces prompt bloat with lean, contract-based configurations — reducing cost per solved task, eliminating command thrashing, and preventing false completion claims.**
 
+> **Status: Alpha / Prototype.** The core harness and analyzer are functional, but the cost-reduction hypothesis is **not yet proven** on real tasks (small, noisy sample; easy tasks). Environment variance currently exceeds the A/A noise gate (median CV ≈ 0.29). See `STATUS.md`. Contributions and independent reproduction are welcome.
+
 ---
 
 ## 1. Why TE-Agent?
