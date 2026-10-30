@@ -1,4 +1,4 @@
-# TE-Agent: Token Economics & Evaluation Harness for Coding Agents
+# TE-Agent — Token Economics & Benchmark Harness for AI Coding Agents (OpenCode, Cursor, Claude Code)
 
 **A measurement-first system that replaces prompt bloat with lean, contract-based configurations — reducing cost per solved task, eliminating command thrashing, and preventing false completion claims.**
 
